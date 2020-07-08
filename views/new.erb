@@ -7,11 +7,15 @@
 
     <label for="house">House: </label>
     <select name="house" id="house">
-        <option value="gryffindor">Gryffindor</option>
-        <option value="ravenclaw">Ravenclaw</option>
-        <option value="hufflepuff">Hufflepuff</option>
-        <option value="slytherin">Slytherin</option>
+        <% @houses.each do |house| %>
+            <option value="<%= house.id %>"><%= house.name %></option >
+        <% end %>
     </select>
+
+
+    
+
+
 
     <label for="age">Age: </label>
     <input id="age" name="age" type="number">
