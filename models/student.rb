@@ -31,5 +31,12 @@ class Student
         result = SqlRunner.run(sql)
         self.map_items(result)
     end
+
+    def self.find(id)
+        sql = "SELECT * FROM students WHERE id = $1"
+        values = [id]
+        result = SqlRunner.run(sql, values).first
+        self.new(result)
+    end
     
 end
