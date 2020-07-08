@@ -1,4 +1,5 @@
 require_relative "../models/student"
+require "pry-byebug"
 
 student1 = Student.new({
     "first_name" => "Hairy",
@@ -7,3 +8,6 @@ student1 = Student.new({
     "age" => "17"
 })
 student1.save
+
+binding.pry
+nil

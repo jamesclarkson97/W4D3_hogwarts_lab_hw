@@ -12,6 +12,10 @@ class Student
         @age = options['age'].to_i
     end
 
+    def self.map_items(data)
+        data.map { |student| self.new(student) }
+    end
+
     def save()
         sql = "INSERT INTO students
         (first_name, second_name, house, age)
@@ -20,6 +24,12 @@ class Student
         values = [@first_name, @second_name, @house, @age]
         result = SqlRunner.run(sql, values).first
         @id = result[:id].to_i
+    end
+
+    def self.all
+        sql = "SELECT * FROM students"
+        result = SqlRunner.run(sql)
+        self.map_items(result)
     end
     
 end
