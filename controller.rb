@@ -16,3 +16,9 @@ get "/hogwarts/new" do
     erb(:new)
 end
 
+# CREATE
+post "/hogwarts" do
+    @student = Student.new(params)
+    @student.save
+    erb(:create)
+end
