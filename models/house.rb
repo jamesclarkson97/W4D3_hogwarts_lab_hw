@@ -16,6 +16,23 @@ class House
         RETURNING id"
         values = [@name]
         result = SqlRunner.run(sql, values).first
-        @id = result[:name]
+        @id = result['id'].to_i
+    end
+
+    def self.all
+        sql = "SELECT * FROM houses"
+        result = SqlRunner.run(sql)
+        self.map_items(result)
+    end
+
+    def self.find(id)
+        sql = "SELECT * FROM houses WHERE id = $1"
+        values = [id]
+        result = SqlRunner.run(sql, values).first
+        self.new(result)
+    end
+
+    def self.map_items(data)
+        data.map { |house| self.new(house) }
     end
 end
